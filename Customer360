@@ -1,18 +1,28 @@
+select  * from customer_transaction ct 
+limit 100
+
+
+select CustomerID, 
+	datediff(max(cast(Purchase_Date as date)),'2022-09-01')
+from customer_transaction ct 
+group by CustomerID
+
+
 WITH RFM_2 AS(
 	SELECT  CustomerID, R, F, M,
  		cast(concat(R,F,M) AS unsigned) AS RFM
-	FROM rfm )
+	from rfm)
 SELECT * ,
 	CASE 
 	WHEN RFM in (444,443,434,344) THEN "Champion"
 		WHEN RFM in (442, 441, 432, 431, 433, 343, 342, 341) THEN "Loyal Customer"
 		WHEN RFM in (424, 423, 324, 323, 413, 414, 343, 334) THEN "Potential Customer"
 		WHEN RFM in (333, 332, 331, 313) THEN "Promising Customer"
-		WHEN RFM in (422, 421, 412, 411, 311, 321, 312, 322) THEN "New Customer"
-		WHEN RFM in (244, 234, 243, 233, 224, 214, 213, 134,144, 143, 133) THEN "Needs Attention"
-        WHEN RFM in (223, 221, 222, 211, 212, 124,131, 132, 141, 142) THEN "At Risk Customer"
-        WHEN RFM in (231, 232, 241, 242) THEN "Price Sensitive"
-        WHEN RFM in (111,112,121,131,141,122,124) THEN "Lost Customer"
+		WHEN RFM in (422, 421, 412, 411, 311, 321, 312, 314, 322) THEN "New Customer"
+		WHEN RFM in (244, 234, 243, 233, 224, 214, 213, 134, 144, 143, 133, 123, 124, 114) THEN "Attention Needed"
+        WHEN RFM in (223, 221, 222, 211, 212, 124, 131, 132, 141, 142, 122) THEN "At Risk Customer"
+        WHEN RFM in (231, 232, 241, 242, 131,141) THEN "Price Sensitive"
+        WHEN RFM in (111, 112, 113, 121) THEN "Lost Customer"
 	end as Segmentation
 from RFM_2
 
