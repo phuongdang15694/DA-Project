@@ -1,4 +1,4 @@
-select  * from customer_transaction ct 
+select  * from customer_transaction T1 
 limit 100
 
 
