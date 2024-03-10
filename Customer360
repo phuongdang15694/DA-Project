@@ -90,13 +90,11 @@ Result_tbl as (
 		2 DESC
 )
 
-select *
-from Result_tbl
 
 WITH RFM_2 AS(
 	SELECT  CustomerID, R, F, M,
  		cast(concat(R,F,M) AS unsigned) AS RFM
-	from rfm)
+	from RFM_Score)
 SELECT * ,
 	CASE 
 	WHEN RFM in (444,443,434,344) THEN "Champion"
