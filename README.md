@@ -1,5 +1,5 @@
-# CUSTOMER 360 and RFM MODEL
-## Customer 360 
+# CUSTOMER360 and RFM MODEL
+## Customer360 
 
 In today's business world, analyzing large amounts of data is critical to developing effective strategies. Major corporations are actively pursuing more comprehensive understanding of customer profiles, including factors such as order quantities, preferences, habits, and spending patterns. 
 
